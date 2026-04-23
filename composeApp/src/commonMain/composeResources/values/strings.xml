@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">K-FLOW</string>
+    <string name="log_in">Вход</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="welcome_back">С возвращением ✨</string>
+    <string name="log_in_for_joining_workout">Войдите, чтобы записаться на занятия</string>
+    <string name="email">ПОЧТА</string>
+    <string name="password">ПАРОЛЬ</string>
+    <string name="password_field_hint">•••••••••</string>
+    <string name="email_field_hint">email@example.com</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="log_in_do">Войти</string>
+    <string name="sign_in_with_google">Войти через Google</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="just_a_few_seconds">Несколько секунд -- и вы с k-flow</string>
+    <string name="sex">ПОЛ</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="hint_name">Анна</string>
+    <string name="textfield_name_title">ИМЯ</string>
+    <string name="textfield_last_name_title">ФАМИЛИЯ</string>
+    <string name="hint_last_name">Смирнова</string>
+    <string name="sign_up_do">Зарегистрироваться</string>
+</resources>
