@@ -17,32 +17,38 @@ import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 fun main() {
 
-    val rawUrl = System.getenv("DATABASE_URL")
-        ?: throw IllegalArgumentException("DATABASE_URL not set")
+    fun main() {
 
-    val uri = java.net.URI(rawUrl)
-    val jdbcUrl = "jdbc:postgresql://${uri.host}:${uri.port}${uri.path}"
+        println("=== ENV DEBUG ===")
+        println("DATABASE_URL: ${System.getenv("DATABASE_URL")}")
+        println("PGHOST: ${System.getenv("PGHOST")}")
+        println("PGUSER: ${System.getenv("PGUSER")}")
+        println("PGPASSWORD: ${System.getenv("PGPASSWORD")}")
+        println("PGPORT: ${System.getenv("PGPORT")}")
+        println("PGDATABASE: ${System.getenv("PGDATABASE")}")
+        println("=================")
 
-    val userInfo = uri.userInfo?.split(":")
-    val user = userInfo?.getOrNull(0)
-        ?: System.getenv("PGUSER")
-        ?: throw IllegalArgumentException("No DB user found")
-    val password = userInfo?.getOrNull(1)
-        ?: System.getenv("PGPASSWORD")
-        ?: ""
+        val rawUrl = System.getenv("DATABASE_URL")
+            ?: throw IllegalArgumentException("DATABASE_URL not set")
 
-    Database.connect(
-        url = jdbcUrl,
-        driver = "org.postgresql.Driver",
-        user = user,
-        password = password
-    )
+        val uri = java.net.URI(rawUrl)
+        val jdbcUrl = "jdbc:postgresql://${uri.host}:${uri.port}${uri.path}"
+        val user = uri.userInfo.split(":")[0]
+        val password = uri.userInfo.split(":")[1]
 
-    transaction {
-        SchemaUtils.createMissingTablesAndColumns(Users)
+        Database.connect(
+            url = jdbcUrl,
+            driver = "org.postgresql.Driver",
+            user = user,
+            password = password
+        )
+
+        transaction {
+            SchemaUtils.createMissingTablesAndColumns(Users)
+        }
+
+        embeddedServer(Netty, port = System.getenv("PORT")?.toInt() ?: 8080, host = "0.0.0.0", module = Application::module).start(wait = true)
     }
-
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0", module = Application::module).start(wait = true)
 }
 
 fun Application.module() {
