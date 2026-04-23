@@ -16,10 +16,18 @@ import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 fun main() {
+    val rawUrl = System.getenv("DATABASE_URL")
+        ?: throw IllegalArgumentException("DATABASE_URL not set")
+
+    val uri = java.net.URI(rawUrl)
+    val (user, password) = uri.userInfo.split(":")
+    val jdbcUrl = "jdbc:postgresql://${uri.host}:${uri.port}${uri.path}"
+
     Database.connect(
-        url = System.getenv("DB_URL") ?: throw IllegalArgumentException("DB_URL not set"),
+        url = jdbcUrl,
         driver = "org.postgresql.Driver",
-        user = System.getenv("DB_USER") ?: throw IllegalArgumentException("DB_USER not set")
+        user = user,
+        password = password
     )
 
     transaction {
