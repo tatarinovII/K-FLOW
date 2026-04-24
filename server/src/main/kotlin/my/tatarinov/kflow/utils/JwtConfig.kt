@@ -19,11 +19,11 @@ object JwtConfig {
 
     private val algorithm = Algorithm.HMAC256(SECRET)
 
-    fun generateToken(email: String): String {
+    fun generateToken(id: String): String {
         return JWT.create()
             .withIssuer(ISSUER)
             .withAudience(AUDIENCE)
-            .withClaim("email", email)
+            .withClaim("id", id)
             .withExpiresAt(
                 Date(System.currentTimeMillis() + 3600000)
             )
@@ -41,7 +41,7 @@ object JwtConfig {
                         .build()
                 )
                 validate { credential ->
-                    if (credential.payload.getClaim("email").asString() != null) {
+                    if (credential.payload.getClaim("id").asString() != null) {
                         JWTPrincipal(credential.payload)
                     } else null
                 }

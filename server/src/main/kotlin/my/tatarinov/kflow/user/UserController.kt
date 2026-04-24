@@ -5,7 +5,8 @@ import io.ktor.server.application.ApplicationCall
 import io.ktor.server.auth.jwt.JWTPrincipal
 import io.ktor.server.auth.principal
 import io.ktor.server.response.respond
-import my.tatarinov.kflow.database.Users
+import my.tatarinov.kflow.database.user.Users
+import java.util.UUID
 
 class UserController(
     private val call: ApplicationCall
@@ -13,9 +14,9 @@ class UserController(
 
     suspend fun getUserData() {
         val principal = call.principal<JWTPrincipal>()
-        val email = principal!!.payload.getClaim("email").asString()
+        val id = principal!!.payload.getClaim("id").asString()
 
-        val user = Users.fetchUserByEmail(email)
+        val user = Users.fetchUserById(UUID.fromString(id))
 
         if (user == null) {
             call.respond(HttpStatusCode.BadRequest, "User not found")

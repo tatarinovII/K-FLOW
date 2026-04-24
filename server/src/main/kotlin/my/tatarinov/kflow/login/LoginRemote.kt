@@ -3,12 +3,12 @@ package my.tatarinov.kflow.login
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginReceiveRemote(
+data class LoginRequest(
     val email: String,
     val password: String
 )
 
 @Serializable
-data class LoginResponseRemote(
+data class LoginResponse(
     val token: String
 )
