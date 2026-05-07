@@ -1,4 +1,4 @@
-package my.tatarinov.kflow.presentation.components
+package my.tatarinov.kflow.presentation.auth.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

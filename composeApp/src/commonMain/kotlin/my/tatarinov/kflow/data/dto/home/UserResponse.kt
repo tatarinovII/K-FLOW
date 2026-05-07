@@ -1,12 +1,12 @@
-package my.tatarinov.kflow.data.dto
+package my.tatarinov.kflow.data.dto.home
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RegisterRequest(
+data class UserResponse(
     val email: String,
-    val password: String,
     val firstName: String,
     val lastName: String,
-    val sex: String
+    val sex: String,
+    val workoutsRemain: Int
 )

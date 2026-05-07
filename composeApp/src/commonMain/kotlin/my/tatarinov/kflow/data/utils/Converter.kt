@@ -1,10 +1,11 @@
 package my.tatarinov.kflow.data.utils
 
-import my.tatarinov.kflow.data.dto.AuthResponse
-import my.tatarinov.kflow.data.dto.LoginRequest
-import my.tatarinov.kflow.data.dto.RegisterRequest
+import my.tatarinov.kflow.data.dto.auth.LoginRequest
+import my.tatarinov.kflow.data.dto.auth.RegisterRequest
+import my.tatarinov.kflow.data.dto.home.UserResponse
 import my.tatarinov.kflow.domain.models.LoginRequestDomain
 import my.tatarinov.kflow.domain.models.RegisterRequestDomain
+import my.tatarinov.kflow.domain.models.User
 
 class Converter {
 
@@ -30,5 +31,13 @@ class Converter {
         firstName = data.firstName,
         lastName = data.lastName,
         sex = data.sex
+    )
+
+    fun map(data: UserResponse): User = User(
+        email = data.email,
+        firstName = data.firstName,
+        lastName = data.lastName,
+        sex = data.sex,
+        workoutsRemain = data.workoutsRemain
     )
 }

@@ -1,4 +1,4 @@
-package my.tatarinov.kflow.data.dto
+package my.tatarinov.kflow.data.dto.auth
 
 import kotlinx.serialization.Serializable
 

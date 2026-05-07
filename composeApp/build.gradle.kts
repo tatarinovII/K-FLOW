@@ -56,6 +56,10 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.2")
+
+            implementation(libs.kvault)
+
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

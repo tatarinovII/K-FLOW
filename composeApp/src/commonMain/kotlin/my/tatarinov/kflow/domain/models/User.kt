@@ -1,9 +1,6 @@
-package my.tatarinov.kflow.user
+package my.tatarinov.kflow.domain.models
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class UserResponse(
+data class User(
     val email: String,
     val firstName: String,
     val lastName: String,

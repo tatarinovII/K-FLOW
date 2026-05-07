@@ -18,16 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kflow.composeapp.generated.resources.Res
@@ -46,8 +42,8 @@ import kflow.composeapp.generated.resources.sign_up_do
 import kflow.composeapp.generated.resources.textfield_last_name_title
 import kflow.composeapp.generated.resources.textfield_name_title
 import my.tatarinov.kflow.presentation.auth.AuthViewModel
-import my.tatarinov.kflow.presentation.components.AuthTabs
-import my.tatarinov.kflow.presentation.components.AuthTextField
+import my.tatarinov.kflow.presentation.auth.components.AuthTabs
+import my.tatarinov.kflow.presentation.auth.components.AuthTextField
 import my.tatarinov.kflow.presentation.utils.AppColors
 import my.tatarinov.kflow.presentation.utils.rememberManropeFont
 import org.jetbrains.compose.resources.stringResource

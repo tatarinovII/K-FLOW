@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: kflow
+      POSTGRES_PASSWORD: kflow
+      POSTGRES_DB: kflow
+    ports:
+      - "5433:5432"
+    volumes:
+      - kflow-pgdata:/var/lib/postgresql/data
+
+  server:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://kflow:kflow@postgres:5432/kflow
+      DB_SSL_MODE: disable
+      JWT_SECRET: local-dev-secret-change-me
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+volumes:
+  kflow-pgdata:

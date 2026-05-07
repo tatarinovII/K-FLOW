@@ -30,9 +30,10 @@ fun connectToDatabase() {
 
     val uri = java.net.URI(rawUrl)
     val (user, password) = uri.userInfo.split(":")
+    val sslMode = System.getenv("DB_SSL_MODE") ?: "require"
 
     Database.connect(
-        url = "jdbc:postgresql://${uri.host}:${uri.port}${uri.path}",
+        url = "jdbc:postgresql://${uri.host}:${uri.port}${uri.path}?sslmode=$sslMode",
         driver = "org.postgresql.Driver",
         user = user,
         password = password

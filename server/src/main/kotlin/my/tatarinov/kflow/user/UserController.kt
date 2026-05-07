@@ -28,7 +28,8 @@ class UserController(
                 email = user.email,
                 firstName = user.firstName,
                 lastName = user.lastName,
-                sex = user.sex
+                sex = user.sex,
+                workoutsRemain = user.workoutsRemain
             )
         )
     }

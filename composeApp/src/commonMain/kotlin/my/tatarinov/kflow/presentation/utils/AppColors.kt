@@ -9,4 +9,5 @@ object AppColors {
     val hintColor = Color(0xffa9a9a9)
     val darkPrimary = Color(0xFFc9968a)
     val dividerColor = Color(0xFFEDE6E2)
+    val avatarColor = Color(0xFFefe5e7)
 }

@@ -1,6 +1,7 @@
 package my.tatarinov.kflow.presentation.auth.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,10 +11,15 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,7 +29,7 @@ import kflow.composeapp.generated.resources.log_in
 import kflow.composeapp.generated.resources.sign_up
 import kotlinx.coroutines.launch
 import my.tatarinov.kflow.presentation.auth.AuthViewModel
-import my.tatarinov.kflow.presentation.components.AuthTabs
+import my.tatarinov.kflow.presentation.auth.components.AuthTabs
 import my.tatarinov.kflow.presentation.utils.rememberManropeFont
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -38,9 +44,19 @@ fun AuthScreen(
     val pagerState = rememberPagerState { 2 }
     val scope = rememberCoroutineScope()
 
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    LaunchedEffect(pagerState.currentPage) {
+        focusManager.clearFocus()
+        keyboardController?.hide()
+    }
+
     Column(
         modifier = Modifier.fillMaxWidth().background(color = Color(0xfff7f3f0))
-            .padding(top = 40.dp),
+            .padding(top = 40.dp).pointerInput(Unit) {
+                detectTapGestures (onTap = {focusManager.clearFocus()} )
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         //Название
