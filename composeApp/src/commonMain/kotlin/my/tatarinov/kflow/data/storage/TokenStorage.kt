@@ -10,6 +10,10 @@ class TokenStorage(private val vault: KVault) {
 
     fun getToken(): String? = vault.string(TOKEN_KEY)
 
+    fun clearToken() {
+        vault.deleteObject(TOKEN_KEY)
+    }
+
     private companion object {
         const val TOKEN_KEY = "token"
     }

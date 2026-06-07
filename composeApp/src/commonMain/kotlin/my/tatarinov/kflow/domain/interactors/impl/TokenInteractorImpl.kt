@@ -9,4 +9,8 @@ class TokenInteractorImpl(
     override fun getToken(): String {
         return storage.getToken() ?: ""
     }
+
+    override fun clearToken() {
+        storage.clearToken()
+    }
 }

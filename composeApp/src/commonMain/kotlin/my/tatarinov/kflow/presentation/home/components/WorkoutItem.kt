@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kflow.composeapp.generated.resources.Res
@@ -36,32 +35,30 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun WorkoutItem(
-    date: String,
-    time: String,
+    startsAt: String,
     title: String,
     bookedCount: Int,
     capacity: Int,
     canBook: Boolean,
-    isBooked: Boolean
+    isBooked: Boolean,
+    onButtonBookClick: () -> Unit,
+    onButtonCancelClick: () -> Unit
 ) {
     val manrope = rememberManropeFont()
 
     val background = if (bookedCount >= capacity) Color(0xFFfdfbfb) else Color.White
 
-    val statusTextColor =
-        if (isBooked) Color(0xFFa89cc8)
-        else if (bookedCount >= capacity) AppColors.inActiveButtonTextColor
-        else Color(0xFF8fb8a8)
+    val statusTextColor = if (isBooked) Color(0xFFa89cc8)
+    else if (bookedCount >= capacity) AppColors.inActiveButtonTextColor
+    else Color(0xFF8fb8a8)
 
-    val statusBackgroundColor =
-        if (isBooked) Color(0xffeae6f5)
-        else if (bookedCount >= capacity) Color(0xffede6e2)
-        else Color(0xFFdff0e9)
+    val statusBackgroundColor = if (isBooked) Color(0xffeae6f5)
+    else if (bookedCount >= capacity) Color(0xffede6e2)
+    else Color(0xFFdff0e9)
 
-    val statusText =
-        if (isBooked) "Записана"
-        else if (bookedCount >= capacity) "Мест нет"
-        else "Свободно"
+    val statusText = if (isBooked) "Записана"
+    else if (bookedCount >= capacity) "Мест нет"
+    else "Свободно"
 
     Row(
         modifier = Modifier.height(110.dp).fillMaxWidth().shadow(
@@ -69,8 +66,7 @@ fun WorkoutItem(
             shape = RoundedCornerShape(16.dp),
             ambientColor = Color(0x1A000000),
             spotColor = Color(0x80000000)
-        )
-            .background(color = background, shape = RoundedCornerShape(16.dp)),
+        ).background(color = background, shape = RoundedCornerShape(16.dp)),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
@@ -78,7 +74,7 @@ fun WorkoutItem(
         ) {
             //Дада
             Text(
-                text = "$date · $time",
+                text = startsAt,
                 fontSize = 11.sp,
                 fontFamily = manrope,
                 fontWeight = FontWeight.Normal,
@@ -147,7 +143,7 @@ fun WorkoutItem(
             ) {
                 if (canBook) {
                     Button(
-                        onClick = {},
+                        onClick = { onButtonBookClick() },
                         colors = ButtonColors(
                             containerColor = AppColors.darkPrimary,
                             contentColor = Color.White,
@@ -166,7 +162,7 @@ fun WorkoutItem(
                     }
                 } else if (isBooked) {
                     OutlinedButton(
-                        onClick = {},
+                        onClick = { onButtonCancelClick() },
                         shape = RoundedCornerShape(20.dp),
                         contentPadding = PaddingValues(vertical = 1.dp, horizontal = 10.dp),
                         border = BorderStroke(1.dp, color = Color(0xffa89cc8))
@@ -184,18 +180,4 @@ fun WorkoutItem(
         }
 
     }
-}
-
-@Composable
-@Preview
-fun WorkoutItemPreview() {
-    WorkoutItem(
-        date = "Пн 21 апр",
-        time = "19:00",
-        title = "Подкачка",
-        bookedCount = 8,
-        capacity = 8,
-        canBook = false,
-        isBooked = false
-    )
 }

@@ -3,8 +3,10 @@ package my.tatarinov.kflow.data.utils
 import my.tatarinov.kflow.data.dto.auth.LoginRequest
 import my.tatarinov.kflow.data.dto.auth.RegisterRequest
 import my.tatarinov.kflow.data.dto.home.UserResponse
+import my.tatarinov.kflow.data.dto.home.WorkoutCardResponse
 import my.tatarinov.kflow.domain.models.LoginRequestDomain
 import my.tatarinov.kflow.domain.models.RegisterRequestDomain
+import my.tatarinov.kflow.domain.models.UpcomingWorkout
 import my.tatarinov.kflow.domain.models.User
 
 class Converter {
@@ -39,5 +41,15 @@ class Converter {
         lastName = data.lastName,
         sex = data.sex,
         workoutsRemain = data.workoutsRemain
+    )
+
+    fun map(data: WorkoutCardResponse): UpcomingWorkout = UpcomingWorkout(
+        id = data.id,
+        title = data.title,
+        startsAt = data.startsAt,
+        capacity = data.capacity,
+        bookedCount = data.bookedCount,
+        isBooked = data.isBooked,
+        canBook = data.canBook
     )
 }

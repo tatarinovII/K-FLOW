@@ -38,6 +38,7 @@ expect val platformModule: Module
 val dataModule = module {
     single<HttpClient> {
         HttpClient {
+            expectSuccess = true
             install(ContentNegotiation) {
                 json(Json{
                     ignoreUnknownKeys = true
