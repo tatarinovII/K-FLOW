@@ -28,6 +28,7 @@ import my.tatarinov.kflow.domain.repository.AuthRepository
 import my.tatarinov.kflow.domain.repository.HomeRepository
 import my.tatarinov.kflow.presentation.auth.AuthViewModel
 import my.tatarinov.kflow.presentation.home.HomeViewModel
+import my.tatarinov.kflow.presentation.profile.ProfileViewModel
 import my.tatarinov.kflow.presentation.utils.DateFormatter
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
@@ -105,6 +106,7 @@ val domainModule = module {
 val viewModelModule = module {
     viewModelOf(::AuthViewModel)
     viewModelOf(::HomeViewModel)
+    viewModelOf(::ProfileViewModel)
 }
 
 val appModule = listOf(dataModule, domainModule, viewModelModule, platformModule)
