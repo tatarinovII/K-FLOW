@@ -14,18 +14,23 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import my.tatarinov.kflow.data.api.AuthApi
 import my.tatarinov.kflow.data.api.HomeApi
+import my.tatarinov.kflow.data.api.ProfileApi
 import my.tatarinov.kflow.data.repos.AuthRepositoryImpl
 import my.tatarinov.kflow.data.repos.HomeRepositoryImpl
+import my.tatarinov.kflow.data.repos.ProfileRepositoryImpl
 import my.tatarinov.kflow.data.storage.TokenStorage
 import my.tatarinov.kflow.data.utils.Converter
 import my.tatarinov.kflow.domain.interactors.AuthInteractor
 import my.tatarinov.kflow.domain.interactors.HomeInteractor
+import my.tatarinov.kflow.domain.interactors.ProfileInteractor
 import my.tatarinov.kflow.domain.interactors.TokenInteractor
 import my.tatarinov.kflow.domain.interactors.impl.AuthInteractorImpl
 import my.tatarinov.kflow.domain.interactors.impl.HomeInteractorImpl
+import my.tatarinov.kflow.domain.interactors.impl.ProfileInteractorImpl
 import my.tatarinov.kflow.domain.interactors.impl.TokenInteractorImpl
 import my.tatarinov.kflow.domain.repository.AuthRepository
 import my.tatarinov.kflow.domain.repository.HomeRepository
+import my.tatarinov.kflow.domain.repository.ProfileRepository
 import my.tatarinov.kflow.presentation.auth.AuthViewModel
 import my.tatarinov.kflow.presentation.home.HomeViewModel
 import my.tatarinov.kflow.presentation.profile.ProfileViewModel
@@ -89,6 +94,14 @@ val dataModule = module {
     single {
         DateFormatter
     }
+
+    single<ProfileApi> {
+        ProfileApi(get(), get())
+    }
+
+    single<ProfileRepository> {
+        ProfileRepositoryImpl(get(), get())
+    }
 }
 
 val domainModule = module {
@@ -100,6 +113,9 @@ val domainModule = module {
     }
     single<TokenInteractor> {
         TokenInteractorImpl(get())
+    }
+    single<ProfileInteractor> {
+        ProfileInteractorImpl(get())
     }
 }
 

@@ -2,9 +2,11 @@ package my.tatarinov.kflow.data.utils
 
 import my.tatarinov.kflow.data.dto.auth.LoginRequest
 import my.tatarinov.kflow.data.dto.auth.RegisterRequest
+import my.tatarinov.kflow.data.dto.home.PastWorkoutCardResponse
 import my.tatarinov.kflow.data.dto.home.UserResponse
 import my.tatarinov.kflow.data.dto.home.WorkoutCardResponse
 import my.tatarinov.kflow.domain.models.LoginRequestDomain
+import my.tatarinov.kflow.domain.models.PastWorkout
 import my.tatarinov.kflow.domain.models.RegisterRequestDomain
 import my.tatarinov.kflow.domain.models.UpcomingWorkout
 import my.tatarinov.kflow.domain.models.User
@@ -51,5 +53,10 @@ class Converter {
         bookedCount = data.bookedCount,
         isBooked = data.isBooked,
         canBook = data.canBook
+    )
+
+    fun map(data: PastWorkoutCardResponse): PastWorkout = PastWorkout(
+        title = data.title,
+        data = data.startsAt
     )
 }
