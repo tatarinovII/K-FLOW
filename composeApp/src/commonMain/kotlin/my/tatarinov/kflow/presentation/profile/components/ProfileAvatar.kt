@@ -25,7 +25,7 @@ fun ProfileAvatar(
     val manrope = rememberManropeFont()
     Box(
         modifier = Modifier
-            .size(70.dp)
+            .size(90.dp)
             .border(1.dp, AppColors.darkPrimary, CircleShape)
             .clip(CircleShape)
             .background(Color.White),
@@ -33,7 +33,7 @@ fun ProfileAvatar(
     ) {
         Box(
             modifier = Modifier
-                .size(63.dp)
+                .size(83.dp)
                 .clip(CircleShape)
                 .background(AppColors.avatarColor)
         )

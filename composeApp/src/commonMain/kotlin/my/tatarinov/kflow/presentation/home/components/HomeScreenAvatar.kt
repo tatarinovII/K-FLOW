@@ -19,7 +19,9 @@ import my.tatarinov.kflow.presentation.utils.AppColors
 import my.tatarinov.kflow.presentation.utils.rememberManropeFont
 
 @Composable
-fun HomeScreenAvatar(letter: String) {
+fun HomeScreenAvatar(
+    letter: String,
+) {
     val manrope = rememberManropeFont()
     Box(
         modifier = Modifier

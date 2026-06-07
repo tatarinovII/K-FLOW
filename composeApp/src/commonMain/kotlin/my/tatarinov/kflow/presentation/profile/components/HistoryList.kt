@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,13 +24,14 @@ import my.tatarinov.kflow.presentation.utils.AppColors
 import my.tatarinov.kflow.presentation.utils.rememberManropeFont
 
 @Composable
-fun HistoryList(
-    historyList: List<HistoryItem>
+fun ProfileHistoryList(
+    historyList: List<HistoryItem>,
+    modifier: Modifier = Modifier
 ) {
     val manrope = rememberManropeFont()
 
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Text(
             text = "ИСТОРИЯ ПОСЕЩЕНИЙ",
@@ -42,6 +44,7 @@ fun HistoryList(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .weight(1f, fill = false)
                 .shadow(
                     elevation = 8.dp,
                     shape = RoundedCornerShape(20.dp),
@@ -53,13 +56,14 @@ fun HistoryList(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                items(
+                itemsIndexed(
                     items = historyList,
-                    key = {it.date}
-                ) {
+                    key = {_, item -> item.date}
+                ) { index, item ->
                     ItemHistory(
-                        title = it.title,
-                        date = it.date
+                        title = item.title,
+                        date = item.date,
+                        showDivider = index < historyList.lastIndex
                     )
                 }
             }
@@ -69,8 +73,8 @@ fun HistoryList(
 
 @Composable
 @Preview(showBackground = true)
-fun HistoryListPreview() {
-    HistoryList(
+fun ProfileHistoryListPreview() {
+    ProfileHistoryList(
         listOf(
             HistoryItem(
                 title = "Растяжка", date = "12 апреля"

@@ -1,6 +1,7 @@
 package my.tatarinov.kflow.presentation.profile.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
@@ -22,7 +23,7 @@ import my.tatarinov.kflow.presentation.utils.rememberManropeFont
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun LogOutButton(
+fun ProfileLogOutButton(
     onLogOutButtonClicked: () -> Unit
 ) {
 
@@ -31,7 +32,7 @@ fun LogOutButton(
     Button(
         modifier = Modifier.fillMaxWidth().shadow(
             elevation = 8.dp,
-            shape = RoundedCornerShape(20.dp),
+            shape = RoundedCornerShape(16.dp),
             ambientColor = Color(0x1A000000),
             spotColor = Color(0x80000000)
         ),
@@ -39,7 +40,8 @@ fun LogOutButton(
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.White, contentColor = Color(0xFFe07060)
-        )
+        ),
+        contentPadding = PaddingValues(12.dp)
     ) {
         Image(
             painter = painterResource(Res.drawable.ic_logout), contentDescription = null
@@ -53,7 +55,7 @@ fun LogOutButton(
 
 @Composable
 @Preview
-private fun LogOutButtonPreview() {
-    LogOutButton(
+private fun ProfileLogOutButtonPreview() {
+    ProfileLogOutButton(
         onLogOutButtonClicked = {})
 }

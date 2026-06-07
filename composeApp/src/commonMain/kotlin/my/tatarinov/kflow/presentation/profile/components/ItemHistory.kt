@@ -18,13 +18,13 @@ import my.tatarinov.kflow.presentation.utils.rememberManropeFont
 
 @Composable
 fun ItemHistory(
-    title: String, date: String
+    title: String, date: String, showDivider: Boolean = true
 ) {
     val manrope = rememberManropeFont()
     Column {
         Column(
             modifier = Modifier.fillMaxWidth().background(Color.White)
-                .padding(horizontal = 16.dp, vertical = 20.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
             Text(
                 text = title,
@@ -41,7 +41,7 @@ fun ItemHistory(
                 fontSize = 11.sp
             )
         }
-        HorizontalDivider(thickness = 1.dp)
+        if (showDivider) HorizontalDivider(thickness = 0.5f.dp, color = AppColors.inActiveButtonTextColor)
     }
 }
 

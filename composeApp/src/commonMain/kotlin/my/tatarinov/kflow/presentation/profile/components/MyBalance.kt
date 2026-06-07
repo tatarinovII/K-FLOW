@@ -23,7 +23,7 @@ import my.tatarinov.kflow.presentation.utils.AppColors
 import my.tatarinov.kflow.presentation.utils.rememberManropeFont
 
 @Composable
-fun MyBalance(
+fun ProfileBalance(
     remainWorkout: Int,
     onButtonBuyClick: () -> Unit
 ) {
@@ -83,6 +83,6 @@ fun MyBalance(
 
 @Composable
 @Preview
-fun MyBalancePreview() {
-    MyBalance(10, {})
+private fun ProfileBalancePreview() {
+    ProfileBalance(10, {})
 }
