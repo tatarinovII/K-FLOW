@@ -7,7 +7,8 @@ sealed interface ProfileUiState {
         val firstName: String,
         val lastName: String,
         val email: String,
-        val historyList: List<HistoryItem>
+        val historyList: List<HistoryItem>,
+        val workoutRemain: Int
     ) : ProfileUiState
 
     data object Loading : ProfileUiState

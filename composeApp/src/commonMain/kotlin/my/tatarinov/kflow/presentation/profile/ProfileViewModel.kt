@@ -43,7 +43,8 @@ class ProfileViewModel(
                             title = it.title,
                             date = dateTimeFormatter.workoutItemDate(LocalDateTime.parse(it.data))
                         )
-                    })
+                    }, workoutRemain = userData.workoutsRemain
+                )
             }
         }
     }

@@ -39,9 +39,8 @@ fun ProfileScreenDefaultState(
     Column(
         modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)
     ) {
-        Spacer(Modifier.height(80.dp))
         ProfileData(firstName, lastName, email)
-        Spacer(Modifier.height(30.dp))
+        Spacer(Modifier.height(24.dp))
         ProfileBalance(remainWorkout, onButtonBuyClick)
         Spacer(Modifier.height(24.dp))
         Column(

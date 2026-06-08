@@ -2,6 +2,7 @@ package my.tatarinov.kflow.presentation.profile.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -34,7 +35,7 @@ fun ProfileBalance(
             shape = RoundedCornerShape(20.dp),
             ambientColor = Color(0x1A000000),
             spotColor = Color(0x80000000)
-        ).background(color = Color.White, shape = RoundedCornerShape(20.dp)).padding(18.dp)
+        ).background(color = Color.White, shape = RoundedCornerShape(20.dp)).padding(16.dp)
     ) {
         Text(
             text = "МОИ ЗАНЯТИЯ",
@@ -60,7 +61,7 @@ fun ProfileBalance(
             fontWeight = FontWeight.W500,
             textAlign = TextAlign.Start
         )
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(4.dp))
         Button(
             onClick = {onButtonBuyClick()},
             colors = ButtonDefaults.buttonColors(
@@ -68,7 +69,8 @@ fun ProfileBalance(
                 contentColor = AppColors.darkPrimary
             ),
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(12.dp),
+            contentPadding = PaddingValues(1.dp)
         ) {
             Text(
                 text = "+ Купить занятия",
